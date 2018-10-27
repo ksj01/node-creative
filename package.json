@@ -1,5 +1,5 @@
 {
-  "name": "Node",
+  "name": "lab4",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,19 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
+    "request": "^2.88.0",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "description": "In this lab you will implement the Utah cities suggestions RESTful service in Node.js that connects to your weather AJAX application.  You will take a URL with a ?q=chars suffix and will look up all of the utah cities that have those chars as a prefix. You will then return a JSON string corresponding to the entries.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BYUCS260F2017/lab-4-node-ksj01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BYUCS260F2017/lab-4-node-ksj01/issues"
+  },
+  "homepage": "https://github.com/BYUCS260F2017/lab-4-node-ksj01#readme"
 }
