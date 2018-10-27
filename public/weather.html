@@ -37,9 +37,9 @@
             </div>
             <div class="col-sm-6">
                 <div class="card">
-                    <div class="card-header bg-primary text-white"><h3>Stack Exchange Search</h3></div>
+                    <div class="card-header bg-primary text-white"><h3>Definition Search</h3></div>
                     <div class="card-body">
-<label for="stackfield">Enter A StackExchange Search Term:</label>
+<label for="stackfield">Enter A Word To Be Defined:</label>
 <div class="form-group">              <form class="form-inline">
                                 <input class="form-control" type="text" id="stackfield" value="">
                                 <input class="btn btn-primary ml-2" id="stackButton" type="submit" value="Submit">
@@ -118,11 +118,17 @@
                 success: function(data) {
                     console.log(data);
                     var everything;
-                    everything = "<ul class=\"list-group\">";
+                    everything = "<ol class=\"list-group\">";
                     for (var i = 0; i < data.length; i++) {
-                        everything += "<li class=\"list-group-item\">" + data[i].defenition + "</li>";
+                        everything += "<li class=\"list-group-item\">";
+                        everything += "<ul>";
+                        everything += "<li>Type: " + data[i].type + "</li>";
+                        everything += "<li>Definition: " + data[i].defenition + "</li>";
+                        everything += "<li> Example: " + data[i].example + "</li>";
+                        everything += "</ul>";
+                        everything += "</li>";
                     }
-                    everything += "</ul>";
+                    everything += "</ol>";
                     console.log(everything);
                     $("#stackhint").html(everything);
                 }

@@ -8,8 +8,9 @@ router.get('/', function(req, res, next) {
     res.sendFile('weather.html', { root: 'public' });
 });
 
-var owl = "https://owlbot.info/api/v1/dictionary/";
+
 router.get('/owl', function(req,res) {
+    var owl = "https://owlbot.info/api/v1/dictionary/";
     owl = owl + req.query.q;
   request(owl).pipe(res);
 });
