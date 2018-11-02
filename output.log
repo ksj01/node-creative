@@ -1,0 +1,9 @@
+nohup: ignoring input
+[0mGET / [32m200 [0m9.720 ms - 5154[0m
+here
+[0mGET /mansion [32m200 [0m7.206 ms - 220316[0m
+[0mGET /favicon.ico [33m404 [0m19.201 ms - 966[0m
+[0mGET / [32m200 [0m1.014 ms - 5154[0m
+here
+[0mGET /favicon.ico [33m404 [0m1.452 ms - 966[0m
+[0mGET /mansion [32m200 [0m1.561 ms - 220316[0m
