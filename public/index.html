@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>City Finder</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-2">
+                <div class="card" id="weatherCard">
+                    <div class="card-header bg-primary text-white">
+                        <h3>Can you afford a house?</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <form class="form">
+                                <label for="mortgage">Home Price</label>
+                                <input class="form-control" type="text" id="mortgage">
+
+                                <label for="rate">Interest Rate</label>
+                                <input class="form-control" type="text" id="rate">
+
+                                <label for="time">Length of Mortgage</label>
+                                <input class="form-control" type="text" id="time">
+
+                                <label for="down">Down Payment</label>
+                                <input class="form-control" type="text" id="down">
+
+                                <label for="credit">Credit Score</label>
+                                <input class="form-control" type="text" id="credit">
+
+                                <input class="btn btn-primary ml-2 mt-2" id="weatherButton" type="submit" value="Submit">
+                            </form>
+                        </div>
+                        <div id="mortgageResult"></div>
+                        <div id="affordResult"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $('#weatherButton').click(function(e) {
+            e.preventDefault();
+            var incomeHTML = "<label for=\"income\">Monthly Income</label><input class=\"form-control\" type=\"text\" id=\"income\"><input class=\"btn btn-primary ml-2\" id=\"afford\" onclick=\"affordClick()\" type=\"submit\" value=\"Submit\">";
+            var mortgage = $('#mortgage').val();
+            var rate = $('#rate').val();
+            var time = $('#time').val();
+            var down = $('#down').val();
+            var credit = $('#credit').val();
+            var myurl = "calculate?mortgage=" + mortgage + "&rate=" + rate + "&time=" + time + "&down=" + down + "&credit=" + credit;
+            $.ajax({
+                url: myurl,
+                dataType: "json",
+                success: function(data) {
+                    var everything;
+                    everything = "<ul>";
+                    everything += "<li>% Down: " + data[0].downpercent + "</li>";
+                    everything += "<li>Payoff Amount: " + data[0].payoff + "</li>";
+                    everything += "<li>Monthly Payment: <span id=\"payment\">" + data[0].payment + "</span></li>";
+                    everything += "</ul>";
+                    everything += incomeHTML;
+                    $("#mortgageResult").html(everything);
+                }
+            });
+        });
+
+        function affordClick() {
+            var income = $('#income').val();
+            var payment = $('#payment').text();
+            var myurl = "afford?payment=" + payment + "&income=" + income;
+            console.log(myurl);
+            $.ajax({
+                url: myurl,
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    var everything;
+                    everything = "<ul>";
+                    everything += "<li>Can you afford this house?: " + data[0].shouldYou + "</li>";
+                    everything += "</ul>";
+                    $("#affordResult").html(everything);
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>
